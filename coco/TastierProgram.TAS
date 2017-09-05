@@ -1,0 +1,99 @@
+
+program Test {
+
+   int i;
+   Array int globalArr[2];
+   int gParam;
+ 
+
+
+
+   void testArrays(){
+      int a;
+      //ArrayDecl
+      Array bool boolArr[3];
+      Array int intArr[5];
+      //Assigning whole array
+      boolArr:={true,false,false};
+      intArr:={9,8,7,6,5};
+
+      //Assigning index of array
+      intArr[1]:=10;
+      
+      //Global array
+      globalArr:={1,2};
+      writeln globalArr[1];
+
+      //Assigning array value to var and using var and expr as index
+      a:=intArr[3];
+      writeln a;
+      intArr[a]:=4;
+      writeln intArr[a];
+      a:=intArr[a-2];
+      writeln a;
+   }
+
+   void testCond(){
+      int x;
+      bool lessZero;
+      //Test Conditional statement
+      x:=-1;
+      lessZero:= (x<0)?true:false;
+      writeln lessZero; //Should be true
+   }
+   void testFor(){
+      int x,x2; 
+      //Test for and post increment
+      write "for1 start 0-3\n";
+      for(x:=0; x++; x<4){
+         writeln x;
+      }
+      write "for1 end\n";
+      
+      //Test for and post decrement
+      write "for2 start 5-0\n";
+      for(x2:=5;x2--;x2>=0){
+            writeln x2;
+      }
+      write "for2 end\n";
+   }
+
+   void testParam(int a, int b, bool c){
+         int r;
+         //Print values of a,b (value at ref stored in a, b)
+         write "Value of Params a and b\n";
+         writeln a;
+         writeln b;
+         //Assign param to array index       
+         globalArr[0]:= b;
+         write "Array Index assigned with value of param b\n";
+         writeln globalArr[0];
+         //Change values of param a(d) and c(e)
+         //Changes stored in adr passed
+   		a:=4;
+         c:=false;
+   }
+
+   void main() {
+   		int d; bool e;
+         Final int const100;
+         const100:=100;
+   		d:=22; e:=true;
+         gParam:=1;
+         write "Values of d and e before call\n";
+         writeln d;
+         writeln e;
+         write "Parameters Test:\n";
+   		testParam(d,gParam,e); 
+         write "Values of d and e after call\n";
+         writeln d;
+         writeln e;  
+         write "Conditional Statement Test:\n";	
+         testCond();
+         write "Arrays Test:\n";
+         testArrays();
+         write "For loop Test:\n";
+         testFor();
+         
+   }
+}
